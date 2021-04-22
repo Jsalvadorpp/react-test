@@ -11,17 +11,24 @@ export default function Home() {
 
 	//states
 	const [ formLoader, setFormLoader ] = useState(false);
+	const [ document, setDocument ] = useState('');
 
 	//functions
 	const sendForm = async () => {
 		setFormLoader(true);
+
+		if (document === '') {
+			toast.error('Document input cannot be empty');
+			setFormLoader(false);
+			return;
+		}
 
 		try {
 			let response = await API.payCo.getToken();
 			setFormLoader(false);
 			history.push({
 				pathname: '/invoice',
-				state: { token: response.data.token }
+				state: { token: response.data.token, document }
 			});
 		} catch (error) {
 			console.log(error);
@@ -36,7 +43,12 @@ export default function Home() {
 				<div className="col-md-6">
 					<form className={classes.form}>
 						<h3 className="text-center">Consult Form</h3>
-						<Ui.TextField label="Document" className={classes.inputText} />
+						<Ui.TextField
+							label="Document"
+							className={classes.inputText}
+							value={document}
+							onChange={(e) => setDocument(e.target.value)}
+						/>
 						<Ui.Button variant="contained" color="primary" className="w-100 mt-4" onClick={sendForm}>
 							{formLoader ? <Ui.CircularProgress className={classes.loader} size="1.5rem" /> : 'Send'}
 						</Ui.Button>

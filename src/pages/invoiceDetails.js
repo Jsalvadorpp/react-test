@@ -12,6 +12,7 @@ export default function Home(props) {
 	//component did mount
 	useEffect(() => {
 		console.log(props.location.state.token);
+		console.log(props.location.state.document);
 	});
 
 	//functions
