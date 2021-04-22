@@ -4,7 +4,10 @@ export default makeStyles({
 	footer: {
 		background: '#13162D',
 		padding: '20px 50px',
-		color: 'white'
+		color: 'white',
+		width: '100%',
+		position: 'absolute',
+		bottom: '0'
 	},
 	copyright: {
 		textAlign: 'center',

@@ -4,12 +4,14 @@ export default makeStyles({
 	homeWrapper: {
 		margin: '20px 60px'
 	},
-	textWrapper: {
-		textAlign: 'center',
-		marginBottom: '40px',
-		marginTop: '60px'
+	form: {
+		padding: '20px',
+		backgroundColor: '#8080801f'
 	},
-	primaryTitle: {
-		color: '#F7931E'
+	inputText: {
+		width: '100%'
+	},
+	loader: {
+		color: 'white'
 	}
 });
