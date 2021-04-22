@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles({
 	homeWrapper: {
-		margin: '20px 60px'
+		margin: '20px 15px'
 	},
 	form: {
 		padding: '20px',
