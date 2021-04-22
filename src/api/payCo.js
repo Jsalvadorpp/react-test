@@ -25,8 +25,22 @@ const getConfig = async (token) => {
 	);
 };
 
+const getBills = async (token, document) => {
+	return await axios.post(
+		'https://apify.epayco.co/billcollect/invoices/consult',
+		{
+			projectId: 29,
+			document
+		},
+		{
+			headers: { Authorization: `Bearer ${token}` }
+		}
+	);
+};
+
 const payCo = {
 	getToken,
-	getConfig
+	getConfig,
+	getBills
 };
 export default payCo;
