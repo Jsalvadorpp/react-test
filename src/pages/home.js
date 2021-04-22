@@ -3,9 +3,11 @@ import useStyles from './styles';
 import * as Ui from '@material-ui/core';
 import API from '../api';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 export default function Home() {
 	const classes = useStyles();
+	const history = useHistory();
 
 	//states
 	const [ formLoader, setFormLoader ] = useState(false);
@@ -17,8 +19,12 @@ export default function Home() {
 		try {
 			let response = await API.payCo.getToken();
 			setFormLoader(false);
-			console.log(response.data);
+			history.push({
+				pathname: '/invoice',
+				state: { token: response.data.token }
+			});
 		} catch (error) {
+			console.log(error);
 			toast.error('Something bad happend');
 		}
 	};
