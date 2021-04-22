@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useStyles from './styles';
 import API from '../api';
 import { toast } from 'react-toastify';
+const moment = require('moment');
 
 export default function Home(props) {
 	const classes = useStyles();
@@ -18,7 +19,6 @@ export default function Home(props) {
 			let config = (await API.payCo.getConfig(token)).data;
 			let queryBills = (await API.payCo.getBills(token, document)).data;
 
-			console.log(queryBills);
 			if (queryBills.success === true) {
 				setBills(queryBills.data.bills);
 			}
@@ -47,7 +47,7 @@ export default function Home(props) {
 						<tr>
 							<td>{bill.amountFirst}</td>
 							<td>{bill.billId}</td>
-							<td>{bill.expirationDateFirst}</td>
+							<td>{moment(bill.expirationDateFirst).format('DD/MM/YYYY')}</td>
 						</tr>
 					))}
 				</tbody>
